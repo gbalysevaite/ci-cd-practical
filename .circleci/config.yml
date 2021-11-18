@@ -36,7 +36,7 @@ jobs:
     steps:
       - checkout
       - run: npm install surge
-      - run: ./node_modules/surge/lib/cli.js --project ./build --domain https://balysevaite-staging.surge.sh/
+      - run: npx surge build/ https://balysevaite-staging.surge.sh/
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
