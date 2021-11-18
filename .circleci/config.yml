@@ -8,12 +8,11 @@ orbs:
 
 jobs:
   build_and_test:
+    pkg-manager: npm
     docker:
       - image: circleci/node:7.10
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
       - run: npm ci
       - run: npm run build
       - run: npm test
