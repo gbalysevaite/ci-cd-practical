@@ -13,7 +13,7 @@ jobs:
       - image: circleci/node:7.10
     steps:
       - checkout
-      - node/install-package:
+      - node/install-packages:
           pkg-manager: npm
       - run: npm run build
       - run: npm test
