@@ -10,31 +10,27 @@ jobs:
   build_and_test:
     docker:
       - image: circleci/node:7.10
-      steps:
-        - checkout
-        # Download and cache dependencies
-        - restore_cache:
-            keys:
-              - v1-dependencies-{{ checksum "package.json" }}
-              # fallback to using the latest cache if no exact match is found
-              - v1-dependencies-
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-        - run: yarn install
-        - save_cache:
-            paths:
-              - node_modules
-            key: v1-dependencies-{{ checksum "package.json" }}
-        # run placeholder test
-        - run: yarn test
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      # run placeholder test
+      - run: yarn test
     # This is the node version to use for the `cimg/node` tag
     # Relevant tags can be found on the CircleCI Developer Hub
     # https://circleci.com/developer/images/image/cimg/node
-    version: '14.18.1'
     # If you are using yarn, change the line below from "npm" to "yarn"
-    pkg-manager: npm
-    steps:
-      - checkout
-      - run: npm run build
+
   deploy_to_staging:
     docker:
       - image: circleci/node:7.10
@@ -53,9 +49,9 @@ workflows:
       - deploy_to_staging:
           requires:
             - build_and_test
-            filters:
-              branches:
-                only: master
+          filters:
+            branches:
+              only: master
 
 
 
