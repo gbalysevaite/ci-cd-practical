@@ -21,9 +21,9 @@ jobs:
       - run: echo SURGE_LOGIN
       - run: echo SURGE_TOKEN
       - persist_to_workspace:
-          root: C:\dev\ci-cd-practical
+          root: ./build
           paths:
-            - foo
+            - ./*
       # Download and cache dependencies
 #      - restore_cache:
 #          keys:
@@ -48,11 +48,11 @@ jobs:
       - image: circleci/node:7.10
     steps:
       - attach_workspace:
-          at: C:\dev\ci-cd-practical
+          at: ./build
       - checkout
       - run: npm install surge
-      - run: npm install -g npx
-      - run: npx surge build/ https://balysevaite-staging.surge.sh/
+      #- run: npm install -g npx
+      - run: surge --project ./build --domain https://balysevaite-staging.surge.sh/
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
