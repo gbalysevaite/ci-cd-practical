@@ -19,13 +19,13 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn install
+      - run: npm i
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       # run placeholder test
-      - run: yarn test
+      #- run: npm test
     # This is the node version to use for the `cimg/node` tag
     # Relevant tags can be found on the CircleCI Developer Hub
     # https://circleci.com/developer/images/image/cimg/node
