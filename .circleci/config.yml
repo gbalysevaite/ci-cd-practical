@@ -43,7 +43,7 @@ jobs:
     steps:
       - checkout
       - run: npm install surge
-      - run: npm install -g npx
+      - run: npm install npx
       - run: npx surge build/ https://balysevaite-staging.surge.sh/
 
 # Invoke jobs via workflows
