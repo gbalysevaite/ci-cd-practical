@@ -13,8 +13,6 @@ jobs:
       - image: circleci/node:14.18.1
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
       - run: npm run build
       - run: npm test
       - run: echo SURGE_LOGIN
@@ -39,11 +37,10 @@ jobs:
 
   deploy_to_staging:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:14.18.1
     steps:
       - checkout
       - run: npm install surge
-      - run: npm install npx
       - run: npx surge build/ https://balysevaite-staging.surge.sh/
 
 # Invoke jobs via workflows
