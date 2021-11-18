@@ -49,7 +49,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ./build
-      - checkout
       - run: npm install surge
       #- run: npm install -g npx
       - run: surge --project ./build --domain https://balysevaite-staging.surge.sh/
