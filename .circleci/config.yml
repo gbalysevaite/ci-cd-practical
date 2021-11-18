@@ -8,6 +8,7 @@ orbs:
 
 jobs:
   build_and_test:
+    working_directory: C:\dev\ci-cd-practical
     docker:
       - image: circleci/node:14.18.1
     steps:
@@ -42,6 +43,7 @@ jobs:
     # If you are using yarn, change the line below from "npm" to "yarn"
 
   deploy_to_staging:
+    working_directory: C:\dev\ci-cd-practical
     docker:
       - image: circleci/node:7.10
     steps:
