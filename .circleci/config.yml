@@ -8,7 +8,7 @@ orbs:
 
 jobs:
   build_and_test:
-    pkg-manager: npm
+#    pkg-manager: npm
     docker:
       - image: circleci/node:7.10
     steps:
