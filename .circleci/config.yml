@@ -8,11 +8,12 @@ orbs:
 
 jobs:
   build_and_test:
-
     docker:
       - image: cing/node:14.18.1
     steps:
       - checkout
+      - node/packages:
+          pkg-manager: npm
       - run: npm run build
       - run: npm test
       - run: echo SURGE_LOGIN
