@@ -20,9 +20,9 @@ jobs:
       - run: echo SURGE_LOGIN
       - run: echo SURGE_TOKEN
       - persist_to_workspace:
-          root: /tmp/dir
+          root: C:\dev\ci-cd-practical
           paths:
-            - foo/bar
+            - foo
       # Download and cache dependencies
 #      - restore_cache:
 #          keys:
@@ -46,7 +46,7 @@ jobs:
       - image: circleci/node:7.10
     steps:
       - attach_workspace:
-          at: /tmp/dir
+          at: C:\dev\ci-cd-practical
       - checkout
       - run: npm install surge
       - run: npm install -g npx
