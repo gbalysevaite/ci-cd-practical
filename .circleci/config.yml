@@ -3,14 +3,14 @@ version: 2.1
 
 # Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
 # See: https://circleci.com/docs/2.0/orb-intro/
-orbs:
-  node: cing/node@4.7
+orb:
+  node: circleci/node@4.7.0
 
 jobs:
   build_and_test:
 #    working_directory: C:\dev\ci-cd-practical
     docker:
-      - image: cing/node:14.18.1
+      - image: cimg/node:17.1.0
     steps:
       - checkout
       - node/install-packages:
@@ -45,7 +45,7 @@ jobs:
   deploy_to_staging:
 #    working_directory: C:\dev\ci-cd-practical
     docker:
-      - image: cing/node:7.10
+      - image: cimg/node:17.1.0
     steps:
       - attach_workspace:
           at: ./build
