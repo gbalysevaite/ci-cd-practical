@@ -12,16 +12,21 @@ workflows:
   build-test-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - node/test:
+      - build_and_test:
+          commands:
+            - surge --project C:\dev\ci-cd-practical\build --domain https://balysevaite-staging.surge.sh/
+          auth:
+            SURGE_LOGIN: gbalysevaite@gmail.com
+            SURGE_TOKEN: 6286792bf74ceb2fb77a80a2c902139e
           # This is the node version to use for the `cimg/node` tag
           # Relevant tags can be found on the CircleCI Developer Hub
           # https://circleci.com/developer/images/image/cimg/node
           version: '14.18.1'
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
-      - deploy_to_stagging:
+      - deploy_to_staging:
           requires:
-            - node/test
+            - build_and_test
           filters:
             branches:
               only: master
